@@ -232,7 +232,7 @@ export default function App() {
     e.preventDefault();
     setLoading(true);
     try {
-      const res = await fetch(`${API_URL}/api/admin/export`, {
+      const res = await fetch(`${API_URL}/api/auth/login`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(loginData),
@@ -270,7 +270,7 @@ export default function App() {
 
   const handleExport = async () => {
     try {
-      const res = await fetch("${API_URL}/api/admin/export", {
+      const res = await fetch(`${API_URL}/api/admin/export`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       const blob = await res.blob();
