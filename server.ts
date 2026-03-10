@@ -90,7 +90,7 @@ const authenticateToken = (req: any, res: any, next: any) => {
 // --- API Routes ---
 
 // Public: Create registration
-app.post("/api/registrations", async (req, res) => {
+app.post("https://phanmemquanlyquannhan-production.up.railway.app/api/registrations", async (req, res) => {
   try {
     const registration = new Registration(req.body);
     await registration.save();
@@ -101,7 +101,7 @@ app.post("/api/registrations", async (req, res) => {
 });
 
 // Admin: Login
-app.post("/api/auth/login", async (req, res) => {
+app.post("https://phanmemquanlyquannhan-production.up.railway.app/api/auth/login", async (req, res) => {
   const { username, password } = req.body;
   try {
     const user = await User.findOne({ username });
@@ -116,7 +116,7 @@ app.post("/api/auth/login", async (req, res) => {
 });
 
 // Admin: Get all registrations
-app.get("/api/admin/registrations", authenticateToken, async (req, res) => {
+app.get("https://phanmemquanlyquannhan-production.up.railway.app/api/admin/registrations", authenticateToken, async (req, res) => {
   try {
     const registrations = await Registration.find().sort({ createdAt: -1 });
     res.json(registrations);
@@ -126,7 +126,7 @@ app.get("/api/admin/registrations", authenticateToken, async (req, res) => {
 });
 
 // Admin: Update status
-app.patch("/api/admin/registrations/:id", authenticateToken, async (req, res) => {
+app.patch("https://phanmemquanlyquannhan-production.up.railway.app/api/admin/registrations/:id", authenticateToken, async (req, res) => {
   try {
     const { status } = req.body;
     const registration = await Registration.findByIdAndUpdate(req.params.id, { status }, { new: true });
@@ -137,7 +137,7 @@ app.patch("/api/admin/registrations/:id", authenticateToken, async (req, res) =>
 });
 
 // Admin: Statistics
-app.get("/api/admin/stats", authenticateToken, async (req, res) => {
+app.get("https://phanmemquanlyquannhan-production.up.railway.app/api/admin/stats", authenticateToken, async (req, res) => {
   try {
 
     const total = await Registration.countDocuments();
