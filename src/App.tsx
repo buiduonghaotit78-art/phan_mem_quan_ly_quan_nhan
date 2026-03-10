@@ -101,6 +101,9 @@ const Input = ({ label, ...props }: any) => (
   </div>
 );
 
+const API_URL =
+  import.meta.env.VITE_API_URL || "http://localhost:3000";
+
 const Select = ({ label, options, ...props }: any) => (
   <div className="space-y-1.5">
     <label className="text-sm font-medium text-zinc-700">{label}</label>
@@ -163,8 +166,8 @@ export default function App() {
     setLoading(true);
     try {
       const [regRes, statsRes] = await Promise.all([
-        fetch("/api/admin/registrations", { headers: { Authorization: `Bearer ${token}` } }),
-        fetch("/api/admin/stats", { headers: { Authorization: `Bearer ${token}` } })
+        fetch(`${API_URL}/api/admin/registrations`, { headers: { Authorization: `Bearer ${token}` } }),
+        fetch(`${API_URL}/api/admin/stats`, { headers: { Authorization: `Bearer ${token}` } })
       ]);
 
       if (regRes.ok) setRegistrations(await regRes.json());
@@ -194,7 +197,7 @@ export default function App() {
   setLoading(true);
 
   try {
-    const res = await fetch("/api/registrations", {
+    const res = await fetch(`${API_URL}/api/registrations`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(formData),
@@ -229,7 +232,7 @@ export default function App() {
     e.preventDefault();
     setLoading(true);
     try {
-      const res = await fetch("/api/auth/login", {
+      const res = await fetch(`${API_URL}/api/admin/export`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(loginData),
@@ -251,7 +254,7 @@ export default function App() {
 
   const handleUpdateStatus = async (id: string, status: string) => {
     try {
-      const res = await fetch(`/api/admin/registrations/${id}`, {
+      const res = await fetch(`${API_URL}/api/admin/registrations/${id}`, {
         method: "PATCH",
         headers: { 
           "Content-Type": "application/json",
@@ -267,7 +270,7 @@ export default function App() {
 
   const handleExport = async () => {
     try {
-      const res = await fetch("/api/admin/export", {
+      const res = await fetch("${API_URL}/api/admin/export", {
         headers: { Authorization: `Bearer ${token}` }
       });
       const blob = await res.blob();
