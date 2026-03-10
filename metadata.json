@@ -1,0 +1,5 @@
+{
+  "name": "Hệ thống Đăng ký Thăm thân Chiến sĩ",
+  "description": "Ứng dụng quản lý đăng ký thăm thân cho người nhà chiến sĩ trong đơn vị quân đội, bao gồm form đăng ký, trang quản trị và thống kê.",
+  "requestFramePermissions": []
+}
