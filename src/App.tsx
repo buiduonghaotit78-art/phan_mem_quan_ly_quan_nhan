@@ -1016,9 +1016,9 @@ export default function App() {
         <div className="max-w-7xl mx-auto px-4 text-center">
           <div className="flex items-center justify-center gap-2 mb-4">
             <ShieldCheck size={20} className="text-emerald-700" />
-            <span className="font-bold tracking-tight">PHẦN MỀM QUẢN LÝ QUÂN NHÂN</span>
+            <span className="font-bold tracking-tight">PHẦN MỀM QUẢN LÝ QUÂN NHÂN ĐẠI ĐỘI BB2, TIỂU ĐOÀN 460</span>
           </div>
-          <p className="text-zinc-500 text-sm">© Phần mềm của Trung uý Bùi Dương Hào, SĐT liên hệ: 0384971009.</p>
+          <p className="text-zinc-500 text-sm">© Tác giả do Trung uý Bùi Dương Hào, SĐT liên hệ: 0384971009.</p>
         </div>
       </footer>
     </div>

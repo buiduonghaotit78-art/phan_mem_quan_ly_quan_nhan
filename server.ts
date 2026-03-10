@@ -6,12 +6,11 @@ import jwt from "jsonwebtoken";
 import bcrypt from "bcryptjs";
 import * as XLSX from "xlsx";
 import dotenv from "dotenv";
-import { numberValueTypes } from "motion";
 
 dotenv.config();
 
 const app = express();
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 
 app.use(cors());
 app.use(express.json());
@@ -90,7 +89,7 @@ const authenticateToken = (req: any, res: any, next: any) => {
 // --- API Routes ---
 
 // Public: Create registration
-app.post("https://phanmemquanlyquannhan-production.up.railway.app/api/registrations", async (req, res) => {
+app.post("/api/registrations", async (req, res) => {
   try {
     const registration = new Registration(req.body);
     await registration.save();
@@ -101,7 +100,7 @@ app.post("https://phanmemquanlyquannhan-production.up.railway.app/api/registrati
 });
 
 // Admin: Login
-app.post("https://phanmemquanlyquannhan-production.up.railway.app/api/auth/login", async (req, res) => {
+app.post("/api/auth/login", async (req, res) => {
   const { username, password } = req.body;
   try {
     const user = await User.findOne({ username });
@@ -116,7 +115,7 @@ app.post("https://phanmemquanlyquannhan-production.up.railway.app/api/auth/login
 });
 
 // Admin: Get all registrations
-app.get("https://phanmemquanlyquannhan-production.up.railway.app/api/admin/registrations", authenticateToken, async (req, res) => {
+app.get("/api/admin/registrations", authenticateToken, async (req, res) => {
   try {
     const registrations = await Registration.find().sort({ createdAt: -1 });
     res.json(registrations);
@@ -126,7 +125,7 @@ app.get("https://phanmemquanlyquannhan-production.up.railway.app/api/admin/regis
 });
 
 // Admin: Update status
-app.patch("https://phanmemquanlyquannhan-production.up.railway.app/api/admin/registrations/:id", authenticateToken, async (req, res) => {
+app.patch("/api/admin/registrations/:id", authenticateToken, async (req, res) => {
   try {
     const { status } = req.body;
     const registration = await Registration.findByIdAndUpdate(req.params.id, { status }, { new: true });
@@ -137,7 +136,7 @@ app.patch("https://phanmemquanlyquannhan-production.up.railway.app/api/admin/reg
 });
 
 // Admin: Statistics
-app.get("https://phanmemquanlyquannhan-production.up.railway.app/api/admin/stats", authenticateToken, async (req, res) => {
+app.get("/api/admin/stats", authenticateToken, async (req, res) => {
   try {
 
     const total = await Registration.countDocuments();
@@ -226,6 +225,10 @@ app.get("/api/admin/export", authenticateToken, async (req, res) => {
   } catch (error: any) {
     res.status(500).json({ message: error.message });
   }
+});
+
+app.get("*", (req, res) => {
+  res.sendFile("dist/index.html", { root: "." });
 });
 
 // --- Server Setup ---
