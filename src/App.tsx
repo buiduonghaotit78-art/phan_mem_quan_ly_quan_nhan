@@ -101,8 +101,7 @@ const Input = ({ label, ...props }: any) => (
   </div>
 );
 
-const API_URL =
-  import.meta.env.VITE_API_URL || "http://localhost:3000";
+const API_URL = "https://phanmemquanlyquannhan-production.up.railway.app";
 
 const Select = ({ label, options, ...props }: any) => (
   <div className="space-y-1.5">
@@ -306,7 +305,7 @@ export default function App() {
     platoonFilter === "all" || r.unit.platoon === platoonFilter;
 
   const matchAddress =
-    addressFilter === "all" || r.unit.address === addressFilter;
+    addressFilter === "all" || r.address === addressFilter;
 
   return matchSearch && matchStatus && matchCompany && matchPlatoon && matchAddress;
 });
