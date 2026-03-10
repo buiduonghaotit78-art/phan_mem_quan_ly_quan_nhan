@@ -316,7 +316,7 @@ export default function App() {
           <div className="flex items-center gap-2 cursor-pointer" onClick={() => setView("form")}>
             <div className="w-10 h-10 rounded-lg overflow-hidden">
               <img 
-                src="./img/logo-quan-doi-nhan-dan-viet-nam-2.png"
+                src="/img/logo-quan-doi-nhan-dan-viet-nam-2.png"
                 alt="Logo Tiểu đoàn 460"
                 className="w-full h-full object-cover"
               />
@@ -372,7 +372,7 @@ export default function App() {
       <main 
         className="w-full p-4 md:p-8 bg-cover bg-center rounded-xl"
         style={{
-          backgroundImage: "url('./img/anh_nen.png')"
+          backgroundImage: "url('/img/anh_nen.png')"
         }}
       >
         <AnimatePresence mode="wait">
